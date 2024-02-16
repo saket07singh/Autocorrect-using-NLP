@@ -2,27 +2,28 @@
 # coding: utf-8
 
 # In[8]:
-!pip install re
-!pip install collections
+
+
 
 
 import re
 from collections import Counter
 
 class SpellChecker:
+    
     def __init__(self, file_path='book.txt'):
         self.words = self.process_text(file_path)
         self.vocab = set(self.words)
         self.word_count_dict = self.get_count()
         self.prob_of_occurr = self.occurr_prob()
-
     def process_text(self, path):
-        words = []
-        with open(path) as f:
-            file_name_data = f.read()
-        file_name_data = file_name_data.lower()
-        words = re.findall(r'\w+', file_name_data)
-        return words
+     words = []
+     with open(path, encoding='utf-8') as f:
+        file_name_data = f.read()
+     file_name_data = file_name_data.lower()
+     words = re.findall(r'\w+', file_name_data)
+     return words
+    
 
     def get_count(self):
         return Counter(self.words)
